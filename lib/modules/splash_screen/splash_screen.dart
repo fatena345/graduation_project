@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:project/modules/hello_screens/hello_screens.dart';
+import 'package:project/modules/onboarding/onboarding_PageView.dart';
 
 import '../../shared/components/components.dart';
 
@@ -33,7 +33,7 @@ class _SplashScreen extends State<SplashScreen>
     Timer(
         Duration(seconds: 3),
         () => Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => HelloScreen())));
+            MaterialPageRoute(builder: (context) => OnboardingPageView())));
   }
 
   @override
