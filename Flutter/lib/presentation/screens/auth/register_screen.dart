@@ -297,7 +297,7 @@ class _RegisterContentState extends State<_RegisterContent> {
                       },
                     ),
 
-                    // مربع التحديد للشروط والأحكام
+                    /* // مربع التحديد للشروط والأحكام
                     BlocBuilder<RegisterCubit, RegisterCubitState>(
                       builder: (context, cubitState) {
                         final cubit = context.read<RegisterCubit>();
@@ -322,11 +322,12 @@ class _RegisterContentState extends State<_RegisterContent> {
                                 color: context.appColors.blackText,
                               ),
                             ),
+                          
                           ],
                         );
                       },
                     ),
-
+ */
                     // زر إنشاء الحساب
                     CustomElevatedButton(
                       height: AppHeight.h50,

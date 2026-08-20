@@ -47,7 +47,7 @@ class _ChargeWalletContent extends StatefulWidget {
 class _ChargeWalletContentState extends State<_ChargeWalletContent> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _amountController =
-      TextEditingController(text: '50000');
+      TextEditingController(text: '500');
 
   @override
   void dispose() {
@@ -202,7 +202,7 @@ class _ChargeWalletContentState extends State<_ChargeWalletContent> {
                 CustomInputField(
                   controller: _amountController,
                   title: tr.amount,
-                  hintText: '50000',
+                  hintText: '500',
                   textInputType: TextInputType.number,
                   isExpanded: true,
                 ),
@@ -211,9 +211,9 @@ class _ChargeWalletContentState extends State<_ChargeWalletContent> {
                 Row(
                   spacing: AppWidth.w8,
                   children: [
-                    _buildAmountChip('25000'),
-                    _buildAmountChip('50000'),
-                    _buildAmountChip('100000'),
+                    _buildAmountChip('250'),
+                    _buildAmountChip('500'),
+                    _buildAmountChip('100'),
                   ],
                 ),
 

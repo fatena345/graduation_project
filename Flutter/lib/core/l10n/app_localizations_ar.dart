@@ -111,7 +111,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get field_required => 'هذا الحقل مطلوب';
 
   @override
-  String get password_too_short => 'كلمة المرور يجب ألا تقل عن 6 خانات';
+  String get password_too_short => 'كلمة المرور يجب ألا تقل عن 8 خانات';
 
   @override
   String get passwords_dont_match => 'كلمتا المرور غير متطابقتين';
@@ -819,4 +819,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get selection_from_gallery => 'اختيار من المعرض';
+
+  @override
+  String get feild_required => 'هذا الحقل مطلوب';
+
+  @override
+  String get update_ride_forbidden => 'لا يمكن تعديل هذه الرحلة';
 }

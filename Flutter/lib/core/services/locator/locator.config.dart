@@ -17,6 +17,8 @@ import '../../../data/data_source/auth/auth_remote_data_source.dart' as _i319;
 import '../../../data/data_source/auth/auth_storage_data_source.dart' as _i300;
 import '../../../data/data_source/location/location_websocket_data_source.dart'
     as _i255;
+import '../../../data/data_source/notifications/notifications_remote_data_source.dart'
+    as _i595;
 import '../../../data/data_source/payment/payment_remote_data_source.dart'
     as _i716;
 import '../../../data/data_source/profile/profile_remote_data_source.dart'
@@ -29,6 +31,7 @@ import '../../../data/models/auth/forgot_password_response/forgot_password_respo
 import '../../../data/models/auth/token/tokens_model.dart' as _i9;
 import '../../../data/models/auth/user/user_model.dart' as _i1011;
 import '../../../data/models/base/base_model.dart' as _i480;
+import '../../../data/models/notifications/notification_model.dart' as _i369;
 import '../../../data/models/payment/payment_models.dart' as _i434;
 import '../../../data/models/profile/profile_model.dart' as _i705;
 import '../../../data/models/report/report_data_model.dart' as _i359;
@@ -36,6 +39,8 @@ import '../../../data/models/rides/reservation_data_model.dart' as _i156;
 import '../../../data/models/rides/ride_data_model.dart' as _i277;
 import '../../../data/repository/auth/auth_repository.dart' as _i728;
 import '../../../data/repository/location/ride_track_repository.dart' as _i502;
+import '../../../data/repository/notifications/notifications_repository.dart'
+    as _i639;
 import '../../../data/repository/payment/payment_repository.dart' as _i1032;
 import '../../../data/repository/profile/profile_repository.dart' as _i732;
 import '../../../data/repository/report/report_repository.dart' as _i1034;
@@ -74,6 +79,8 @@ import '../../../domain/entity/rides/update_ride_entity.dart' as _i1021;
 import '../../../domain/repository/auth/i_auth_repository.dart' as _i154;
 import '../../../domain/repository/location/i_ride_tracking_repository.dart'
     as _i257;
+import '../../../domain/repository/notifications/i_notifications_repository.dart'
+    as _i919;
 import '../../../domain/repository/payment/_payment_repository.dart' as _i660;
 import '../../../domain/repository/profile/i_profile_repository.dart' as _i950;
 import '../../../domain/repository/report/i_report_repository.dart' as _i58;
@@ -101,6 +108,10 @@ import '../../../domain/usecase/location/disconnect_from_ride_tracking_usecase.d
 import '../../../domain/usecase/location/listen_to_location_update_usecase.dart'
     as _i33;
 import '../../../domain/usecase/location/send_location_usecase.dart' as _i568;
+import '../../../domain/usecase/notifications/get_notifications_usecase.dart'
+    as _i423;
+import '../../../domain/usecase/notifications/mark_notification_read_usecase.dart'
+    as _i580;
 import '../../../domain/usecase/payment/create_deposit_request_usecase.dart'
     as _i603;
 import '../../../domain/usecase/payment/get_deposit_requests_usecase.dart'
@@ -148,6 +159,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i255.LocationWebSocketDataSource>(
       () => _i255.LocationWebSocketDataSource(),
+    );
+    gh.factory<_i595.NotificationsRemoteDataSource>(
+      () => _i595.NotificationsRemoteDataSource(),
     );
     gh.factory<_i716.PaymentRemoteDataSource>(
       () => _i716.PaymentRemoteDataSource(),
@@ -230,6 +244,11 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i873.GetMyReportsUseCase(gh<_i58.IReportRepository>()),
       instanceName: 'GetMyReportsUseCase',
     );
+    gh.factory<_i919.INotificationsRepository>(
+      () => _i639.NotificationsRepository(
+        gh<_i595.NotificationsRemoteDataSource>(),
+      ),
+    );
     gh.factory<
       _i759.IUseCase<
         _i480.BaseModel<_i359.ReportDataModel>?,
@@ -238,6 +257,15 @@ extension GetItInjectableX on _i174.GetIt {
     >(
       () => _i577.CreateReportUseCase(gh<_i58.IReportRepository>()),
       instanceName: 'CreateReportUseCase',
+    );
+    gh.factory<
+      _i759.IUseCase<
+        _i480.BaseModel<_i369.NotificationsListModel>?,
+        _i110.RidesNoParamsEntity
+      >
+    >(
+      () => _i423.GetNotificationsUseCase(gh<_i919.INotificationsRepository>()),
+      instanceName: 'GetNotificationsUseCase',
     );
     gh.factory<
       _i759.IUseCase<
@@ -395,6 +423,12 @@ extension GetItInjectableX on _i174.GetIt {
     >(
       () => _i844.ResetPasswordUseCase(gh<_i154.IAuthRepository>()),
       instanceName: 'ResetPasswordUseCase',
+    );
+    gh.factory<_i759.IUseCase<_i480.BaseModel<dynamic>?, _i674.IdEntity>>(
+      () => _i580.MarkNotificationReadUseCase(
+        gh<_i919.INotificationsRepository>(),
+      ),
+      instanceName: 'MarkNotificationReadUseCase',
     );
     gh.factory<
       _i759.IUseCase<

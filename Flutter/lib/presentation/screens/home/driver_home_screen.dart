@@ -8,10 +8,8 @@ import 'package:a_tareqaak/core/resources/app_assets.dart';
 import 'package:a_tareqaak/core/resources/app_fonts.dart';
 import 'package:a_tareqaak/core/resources/app_values.dart';
 import 'package:a_tareqaak/core/routes/app_routes.dart';
-import 'package:a_tareqaak/data/models/rides/ride_data_model.dart';
 import 'package:a_tareqaak/presentation/cubit/driver_home/driver_home_cubit.dart';
 import 'package:a_tareqaak/presentation/cubit/driver_home/driver_home_state.dart';
-import 'package:a_tareqaak/presentation/screens/driver_rides/widgets/ride_card_widget.dart';
 import 'package:a_tareqaak/presentation/widgets/custom_elevated_button.dart';
 import 'package:a_tareqaak/presentation/widgets/custom_snack_bar.dart';
 import 'package:a_tareqaak/presentation/widgets/image_view.dart';
@@ -63,7 +61,7 @@ class _DriverHomeContent extends StatelessWidget {
                         height: AppHeight.h45,
                         fit: BoxFit.contain,
                       ),
-                      Row(
+                      /* Row(
                         spacing: AppWidth.w10,
                         children: [
                           IconButton(
@@ -84,6 +82,7 @@ class _DriverHomeContent extends StatelessWidget {
                           ),
                         ],
                       ),
+                   */
                     ],
                   ),
 

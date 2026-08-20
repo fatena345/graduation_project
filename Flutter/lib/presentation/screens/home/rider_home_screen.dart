@@ -106,7 +106,7 @@ class RiderHomeScreen extends StatelessWidget {
                 ),
               ),
 
-              // عنوان رحلات متاحة الآن
+              /* // عنوان رحلات متاحة الآن
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -179,6 +179,7 @@ class RiderHomeScreen extends StatelessWidget {
                   );
                 },
               ),
+             */
             ],
           ),
         ),

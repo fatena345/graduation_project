@@ -112,7 +112,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get field_required => 'This field is required';
 
   @override
-  String get password_too_short => 'Password must be at least 6 characters';
+  String get password_too_short => 'Password must be at least 8 characters';
 
   @override
   String get passwords_dont_match => 'Passwords do not match';
@@ -827,4 +827,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get selection_from_gallery => 'Choose from Gallery';
+
+  @override
+  String get feild_required => 'this field is required';
+
+  @override
+  String get update_ride_forbidden => 'cannot edit this ride';
 }

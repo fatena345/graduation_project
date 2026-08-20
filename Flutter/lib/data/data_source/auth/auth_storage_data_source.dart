@@ -57,19 +57,19 @@ class AuthStorageDataSource extends BaseStorageDataSource {
     ).then((e) => e.fold((l) => Left(l), (r) => Right(r as String?)));
   }
 
-  Future<Either<AppException, dynamic>> storeRememberMe(bool rememberMe) {
+ /*  Future<Either<AppException, dynamic>> storeRememberMe(bool rememberMe) {
     return saveData(
       key: AppStoragePaths.rememberMe,
       data: rememberMe,
     );
-  }
-
+  } */
+/* 
   Future<Either<AppException, bool>> getRememberMe() {
     return getData(
       key: AppStoragePaths.rememberMe,
     ).then((e) => e.fold((l) => Left(l), (r) => Right(r ?? false)));
   }
-
+ */
   Future<Either<AppException, dynamic>> storeProfileComplete(bool profileComplete) {
     return saveData(
       key: AppStoragePaths.profileComplete,

@@ -5,8 +5,8 @@ import 'package:a_tareqaak/core/services/locator/locator.dart';
 import 'package:a_tareqaak/data/models/base/base_model.dart';
 import 'package:a_tareqaak/domain/entity/rides/id_entity.dart';
 import 'package:a_tareqaak/domain/usecase/i_use_case.dart';
-import 'package:a_tareqaak/presentation/bloc/rides/reservation_action/i_accept_reservation_event.dart';
-import 'package:a_tareqaak/presentation/bloc/rides/reservation_action/i_accept_reservation_state.dart';
+import 'package:a_tareqaak/presentation/bloc/rides/reservation_action/i_reservation_action_event.dart';
+import 'package:a_tareqaak/presentation/bloc/rides/reservation_action/i_reservation_action_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ReservationActionBloc

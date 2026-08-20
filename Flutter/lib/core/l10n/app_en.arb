@@ -48,7 +48,7 @@
   "enter_valid_email": "Please enter a valid email",
   "enter_valid_phone": "Please enter a valid Syrian phone number",
   "field_required": "This field is required",
-  "password_too_short": "Password must be at least 6 characters",
+  "password_too_short": "Password must be at least 8 characters",
   "passwords_dont_match": "Passwords do not match",
   "must_agree_terms": "You must agree to terms & conditions",
   "language_switch": "English",
@@ -291,6 +291,8 @@
   "camera_permission_needed": "Camera permission is required.",
 "gallery_permission_needed": "Gallery access permission is required.",
 "photo_shoot": "Take Photo",
-"selection_from_gallery": "Choose from Gallery"
+"selection_from_gallery": "Choose from Gallery",
+"feild_required" :  "this field is required",
+"update_ride_forbidden" : "cannot edit this ride"
 
 }

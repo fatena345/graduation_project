@@ -24,12 +24,14 @@ RideDataModel _$RideDataModelFromJson(Map<String, dynamic> json) =>
       capacity: (json['capacity'] as num?)?.toInt(),
       availableSeats: (json['available_seats'] as num?)?.toInt(),
       status: json['status'] as String?,
-      carImage: json['car_image'] as String?,
       driverInfo: json['driver_info'] == null
           ? null
           : DriverInfoModel.fromJson(
               json['driver_info'] as Map<String, dynamic>,
             ),
+      reservations: (json['reservations'] as List<dynamic>?)
+          ?.map((e) => ReservationDataModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 RidesListModel _$RidesListModelFromJson(Map<String, dynamic> json) =>

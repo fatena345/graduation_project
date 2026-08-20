@@ -117,7 +117,7 @@ class _EditRideContentState extends State<_EditRideContent> {
               showCustomSnackBar(
                 context: context,
                 title: tr.error_title,
-                message: state.message,
+                message: tr.update_ride_forbidden,
                 contentType: ContentType.failure,
               );
             }

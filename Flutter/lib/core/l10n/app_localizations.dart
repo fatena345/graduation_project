@@ -305,7 +305,7 @@ abstract class AppLocalizations {
   /// No description provided for @password_too_short.
   ///
   /// In en, this message translates to:
-  /// **'Password must be at least 6 characters'**
+  /// **'Password must be at least 8 characters'**
   String get password_too_short;
 
   /// No description provided for @passwords_dont_match.
@@ -1705,6 +1705,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose from Gallery'**
   String get selection_from_gallery;
+
+  /// No description provided for @feild_required.
+  ///
+  /// In en, this message translates to:
+  /// **'this field is required'**
+  String get feild_required;
+
+  /// No description provided for @update_ride_forbidden.
+  ///
+  /// In en, this message translates to:
+  /// **'cannot edit this ride'**
+  String get update_ride_forbidden;
 }
 
 class _AppLocalizationsDelegate

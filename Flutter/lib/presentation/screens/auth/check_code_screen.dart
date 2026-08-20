@@ -326,8 +326,7 @@ class _CheckCodeContentState extends State<_CheckCodeContent> {
                   builder: (context, cubitState) {
                     final cubit = context.read<VerifyEmailCubit>();
                     return Directionality(
-                      textDirection:
-                          isRtl ? TextDirection.rtl : TextDirection.ltr,
+                      textDirection: TextDirection.ltr,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         spacing: AppWidth.w8,

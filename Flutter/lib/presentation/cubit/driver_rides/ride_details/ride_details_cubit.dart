@@ -1,4 +1,5 @@
-import 'package:a_tareqaak/data/models/ride/ride_model.dart';
+
+import 'package:a_tareqaak/data/models/rides/ride_data_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'ride_details_state.dart';
 
@@ -6,7 +7,7 @@ import 'ride_details_state.dart';
 class RideDetailsCubit extends Cubit<RideDetailsState> {
   RideDetailsCubit() : super(RideDetailsInitialState());
 
-  void loadRideDetails(RideModel ride) {
+  void loadRideDetails(RideDetailsModel ride) {
     emit(RideDetailsLoadingState());
     try {
       emit(RideDetailsLoadedState(ride));

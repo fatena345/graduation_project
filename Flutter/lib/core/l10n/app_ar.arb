@@ -48,7 +48,7 @@
   "enter_valid_email": "يرجى إدخال بريد إلكتروني صحيح",
   "enter_valid_phone": "يرجى إدخال رقم هاتف سوري صحيح",
   "field_required": "هذا الحقل مطلوب",
-  "password_too_short": "كلمة المرور يجب ألا تقل عن 6 خانات",
+  "password_too_short": "كلمة المرور يجب ألا تقل عن 8 خانات",
   "passwords_dont_match": "كلمتا المرور غير متطابقتين",
   "must_agree_terms": "يجب الموافقة على الشروط والأحكام لاستكمال التسجيل",
   "language_switch": "العربية",
@@ -294,6 +294,8 @@
   "camera_permission_needed" : "يجب إعطاء إذن للوصول إلى الكاميرا",
   "gallery_permission_needed" : "يجب إعطاء إذن للوصول إلى المعرض",
   "photo_shoot" : "التقاط صورة",
-  "selection_from_gallery" : "اختيار من المعرض"
+  "selection_from_gallery" : "اختيار من المعرض",
+  "feild_required"  : "هذا الحقل مطلوب",
+  "update_ride_forbidden" : "لا يمكن تعديل هذه الرحلة"
   
 }

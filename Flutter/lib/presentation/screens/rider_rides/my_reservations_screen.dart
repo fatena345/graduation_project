@@ -2,6 +2,7 @@ import 'package:a_tareqaak/core/extension/localization_extension.dart';
 import 'package:a_tareqaak/core/extension/theme_color_extension.dart';
 import 'package:a_tareqaak/core/resources/app_fonts.dart';
 import 'package:a_tareqaak/core/resources/app_values.dart';
+import 'package:a_tareqaak/core/routes/app_routes.dart';
 import 'package:a_tareqaak/data/models/rides/reservation_data_model.dart';
 import 'package:a_tareqaak/domain/entity/rides/id_entity.dart';
 import 'package:a_tareqaak/presentation/bloc/rides/cancel_reservation/cancel_reservation_bloc.dart';
@@ -112,10 +113,13 @@ class _MyReservationsContent extends StatelessWidget {
                       child: ListView.separated(
                         padding: EdgeInsets.all(AppPaddingWidth.p20),
                         itemCount: reservations.length,
-                        separatorBuilder: (_, __) =>
+                        separatorBuilder: (_, _) =>
                             SizedBox(height: AppHeight.h12),
                         itemBuilder: (context, index) => _ReservationCard(
                           reservation: reservations[index],
+                          /* onTap: () {
+                            RideDetailsRoute($extra: reservations[index].ride).push(context);
+                          } */
                         ),
                       ),
                     );
@@ -132,8 +136,8 @@ class _MyReservationsContent extends StatelessWidget {
 
 class _ReservationCard extends StatelessWidget {
   final ReservationDataModel reservation;
-
-  const _ReservationCard({required this.reservation});
+  //final VoidCallback? onTap;
+  const _ReservationCard({required this.reservation });
 
   bool get _isCancelable {
     final status = reservation.status?.toLowerCase();

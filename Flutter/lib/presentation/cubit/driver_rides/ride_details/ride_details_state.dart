@@ -1,4 +1,4 @@
-import 'package:a_tareqaak/data/models/ride/ride_model.dart';
+import 'package:a_tareqaak/data/models/rides/ride_data_model.dart';
 import 'package:flutter/foundation.dart';
 
 @immutable
@@ -7,7 +7,7 @@ abstract class RideDetailsState {}
 class RideDetailsInitialState extends RideDetailsState {}
 
 class RideDetailsLoadedState extends RideDetailsState {
-  final RideModel ride;
+  final RideDetailsModel ride;
 
   RideDetailsLoadedState(this.ride);
 }
