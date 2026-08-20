@@ -64,7 +64,7 @@ class _RegisterContentState extends State<_RegisterContent> {
   void _onRegisterPressed(BuildContext context) {
     final cubit = context.read<RegisterCubit>();
 
-    if (!cubit.state.isTermsAccepted) {
+    /* if (!cubit.state.isTermsAccepted) {
       showCustomSnackBar(
         context: context,
         title: context.loc.warning_title,
@@ -73,7 +73,7 @@ class _RegisterContentState extends State<_RegisterContent> {
       );
       return;
     }
-
+ */
     if (_formKey.currentState?.validate() ?? false) {
       final entity = cubit.state.entity;
       if (entity != null) {

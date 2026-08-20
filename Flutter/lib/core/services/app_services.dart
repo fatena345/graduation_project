@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import '../utils/firebase_notifications_handler.dart';
@@ -13,7 +15,7 @@ class AppServices {
 
   static void _configureCrashlytics() {
 
-  /* FlutterError.onError =
+  FlutterError.onError =
       FirebaseCrashlytics.instance.recordFlutterFatalError;
 
 
@@ -27,7 +29,7 @@ class AppServices {
     );
 
     return true;
-  }; */
+  };
 }
   static Future<void> init() async {
     // تهيئة Hive والحاقن قبل أي شيء آخر (لا تعتمد على Firebase)

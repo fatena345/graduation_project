@@ -23,9 +23,9 @@ class DefaultFirebaseOptions {
       );
     }
     switch (defaultTargetPlatform) {
-      /* case TargetPlatform.android:
+       case TargetPlatform.android:
         return android;
-      case TargetPlatform.iOS:
+      /*case TargetPlatform.iOS:
         return ios; */
       case TargetPlatform.macOS:
         throw UnsupportedError(
@@ -49,20 +49,13 @@ class DefaultFirebaseOptions {
     }
   }
 
-  /* static const FirebaseOptions android = FirebaseOptions(
-     apiKey: 'AIzaSyAMEu9KBjnRq5o-tFDSJSTc7WhccVe2-rw',
-    appId: '1:164968813795:android:5e2c7b4f6b563c639861d6',
-    messagingSenderId: '164968813795',
-    projectId: 'qwafil-36c89',
-    storageBucket: 'qwafil-36c89.firebasestorage.app', 
+   static const FirebaseOptions android = FirebaseOptions(
+     apiKey: 'AIzaSyBh1B6_SIF0i1pS0FbYwiHmEewCcdMGGzQ',
+    appId: '1:1056597453242:android:d9c1538e109b0a7b549583',
+    messagingSenderId: '1056597453242',
+    projectId: 'atareeqak-605cf',
+    storageBucket: 'atareeqak-605cf.firebasestorage.app', 
   );
  
-  static const FirebaseOptions ios = FirebaseOptions(
-     apiKey: 'AIzaSyBz5es6MHh9cqmYqjCIkduiA-638D_hn_8',
-    appId: '1:164968813795:ios:cab498699a31a2049861d6',
-    messagingSenderId: '164968813795',
-    projectId: 'qwafil-36c89',
-    storageBucket: 'qwafil-36c89.firebasestorage.app',
-    iosBundleId: 'sta.sa.qwafil.qwafil', 
-  );*/
+
 }

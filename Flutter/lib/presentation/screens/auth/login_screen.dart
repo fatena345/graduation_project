@@ -1,5 +1,6 @@
 import 'package:a_tareqaak/core/extension/validation_extension.dart';
 import 'package:a_tareqaak/core/routes/app_routes.dart';
+import 'package:a_tareqaak/core/utils/firebase_notifications_handler.dart';
 import 'package:a_tareqaak/presentation/bloc/auth/login/i_login_event.dart';
 import 'package:a_tareqaak/presentation/bloc/auth/login/i_login_state.dart';
 import 'package:a_tareqaak/presentation/cubit/auth/login/login_state.dart';
@@ -57,7 +58,7 @@ class _LoginContentState extends State<_LoginContent> {
       backgroundColor: context.appColors.backGround,
       body: SafeArea(
         child: BlocConsumer<LoginBloc, ILoginState>(
-          listener: (context, apiState) {
+          listener: (context, apiState){
             if (apiState is LoginLoaded) {
               showCustomSnackBar(
                 context: context,
@@ -65,6 +66,7 @@ class _LoginContentState extends State<_LoginContent> {
                 message: tr.login_to_access,
                 contentType: ContentType.success,
               );
+             // await FirebaseNotificationsHandler().registerTokenAfterLogin();
               // التوجيه حسب نوع المستخدم عند نجاح تسجيل الدخول
               final userType =
                   apiState.tokensModel?.data?.user?.userType;

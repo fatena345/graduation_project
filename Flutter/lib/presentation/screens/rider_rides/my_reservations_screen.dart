@@ -1,9 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+
 import 'package:a_tareqaak/core/extension/localization_extension.dart';
 import 'package:a_tareqaak/core/extension/theme_color_extension.dart';
 import 'package:a_tareqaak/core/resources/app_fonts.dart';
 import 'package:a_tareqaak/core/resources/app_values.dart';
 import 'package:a_tareqaak/core/routes/app_routes.dart';
 import 'package:a_tareqaak/data/models/rides/reservation_data_model.dart';
+import 'package:a_tareqaak/data/models/rides/ride_data_model.dart';
 import 'package:a_tareqaak/domain/entity/rides/id_entity.dart';
 import 'package:a_tareqaak/presentation/bloc/rides/cancel_reservation/cancel_reservation_bloc.dart';
 import 'package:a_tareqaak/presentation/bloc/rides/cancel_reservation/i_cancel_reservation_event.dart';
@@ -15,12 +21,8 @@ import 'package:a_tareqaak/presentation/widgets/custom_elevated_button.dart';
 import 'package:a_tareqaak/presentation/widgets/custom_snack_bar.dart';
 import 'package:a_tareqaak/presentation/widgets/text/body_title.dart';
 import 'package:a_tareqaak/presentation/widgets/text/section_title.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-// شاشة حجوزات الراكب — تعرض الحجوزات التي أنشأها الراكب مع إمكانية الإلغاء
+// شاشة حجوزاتي كراكب — تعرض الحجوزات مع الانتقال لتفاصيل الرحلة المرتبطة
 class MyReservationsScreen extends StatelessWidget {
   const MyReservationsScreen({super.key});
 
@@ -113,14 +115,26 @@ class _MyReservationsContent extends StatelessWidget {
                       child: ListView.separated(
                         padding: EdgeInsets.all(AppPaddingWidth.p20),
                         itemCount: reservations.length,
-                        separatorBuilder: (_, _) =>
+                        separatorBuilder: (_, __) =>
                             SizedBox(height: AppHeight.h12),
-                        itemBuilder: (context, index) => _ReservationCard(
-                          reservation: reservations[index],
-                          /* onTap: () {
-                            RideDetailsRoute($extra: reservations[index].ride).push(context);
-                          } */
-                        ),
+                        itemBuilder: (context, index) {
+                          final reservation = reservations[index];
+                          return _ReservationCard(
+                            reservation: reservation,
+                            onTap: () {
+                              // 👈 التحويل الآمن من ReservationDataModel إلى RideDataModel لفتح التفاصيل
+                              if (reservation.ride != null) {
+                                final rideModel = RideDataModel(
+                                  id: reservation.ride,
+                                  location: reservation.rideLocation,
+                                  destination: reservation.rideDestination,
+                                );
+                                RideDetailsRoute($extra: rideModel)
+                                    .push(context);
+                              }
+                            },
+                          );
+                        },
                       ),
                     );
                   },
@@ -136,8 +150,12 @@ class _MyReservationsContent extends StatelessWidget {
 
 class _ReservationCard extends StatelessWidget {
   final ReservationDataModel reservation;
-  //final VoidCallback? onTap;
-  const _ReservationCard({required this.reservation });
+  final VoidCallback? onTap;
+
+  const _ReservationCard({
+    required this.reservation,
+    required this.onTap,
+  });
 
   bool get _isCancelable {
     final status = reservation.status?.toLowerCase();
@@ -177,101 +195,104 @@ class _ReservationCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        spacing: AppHeight.h10,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: SectionTitle(
-                  text: title.isNotEmpty ? title : tr.destination,
-                  fontSize: AppFontSize.s16,
-                ),
-              ),
-              if ((reservation.status ?? '').isNotEmpty)
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppPaddingWidth.p8,
-                    vertical: AppPaddingHeight.p4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: _statusColor(context).withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(AppRadius.r6),
-                  ),
-                  child: BodyTitle(
-                    text: reservation.status!,
-                    fontSize: AppFontSize.s12,
-                    color: _statusColor(context),
-                    fontWeight: AppFontWeight.bold,
-                  ),
-                ),
-            ],
-          ),
-          if ((reservation.pickupLocation ?? '').isNotEmpty)
+      child: InkWell(
+        onTap: onTap,
+        child: Column(
+          spacing: AppHeight.h10,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                FaIcon(
-                  FontAwesomeIcons.locationDot,
-                  size: AppSize.s14,
-                  color: context.appColors.greyText,
-                ),
-                SizedBox(width: AppWidth.w6),
                 Expanded(
-                  child: BodyTitle(
-                    text: reservation.pickupLocation!,
+                  child: SectionTitle(
+                    text: title.isNotEmpty ? title : tr.destination,
+                    fontSize: AppFontSize.s16,
+                  ),
+                ),
+                if ((reservation.status ?? '').isNotEmpty)
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppPaddingWidth.p8,
+                      vertical: AppPaddingHeight.p4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: _statusColor(context).withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(AppRadius.r6),
+                    ),
+                    child: BodyTitle(
+                      text: reservation.status!,
+                      fontSize: AppFontSize.s12,
+                      color: _statusColor(context),
+                      fontWeight: AppFontWeight.bold,
+                    ),
+                  ),
+              ],
+            ),
+            if ((reservation.pickupLocation ?? '').isNotEmpty)
+              Row(
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.locationDot,
+                    size: AppSize.s14,
+                    color: context.appColors.greyText,
+                  ),
+                  SizedBox(width: AppWidth.w6),
+                  Expanded(
+                    child: BodyTitle(
+                      text: reservation.pickupLocation!,
+                      fontSize: AppFontSize.s13,
+                      color: context.appColors.greyText,
+                    ),
+                  ),
+                ],
+              ),
+            if ((reservation.payment ?? '').isNotEmpty)
+              Row(
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.moneyBill,
+                    size: AppSize.s14,
+                    color: context.appColors.greyText,
+                  ),
+                  SizedBox(width: AppWidth.w6),
+                  BodyTitle(
+                    text: reservation.payment!,
                     fontSize: AppFontSize.s13,
                     color: context.appColors.greyText,
                   ),
-                ),
-              ],
-            ),
-          if ((reservation.payment ?? '').isNotEmpty)
-            Row(
-              children: [
-                FaIcon(
-                  FontAwesomeIcons.moneyBill,
-                  size: AppSize.s14,
-                  color: context.appColors.greyText,
-                ),
-                SizedBox(width: AppWidth.w6),
-                BodyTitle(
-                  text: reservation.payment!,
-                  fontSize: AppFontSize.s13,
-                  color: context.appColors.greyText,
-                ),
-              ],
-            ),
-          if (_isCancelable)
-            BlocBuilder<CancelReservationBloc, ICancelReservationState>(
-              builder: (context, state) {
-                final isLoading = state is CancelReservationLoading;
-                return CustomElevatedButton(
-                  height: AppHeight.h40,
-                  borderRadius: AppRadius.r10,
-                  color: context.appColors.lightRed,
-                  borderSide: BorderSide(color: context.appColors.red),
-                  notEnable: isLoading || reservation.id == null,
-                  loading: isLoading,
-                  onPressed: () {
-                    if (isLoading || reservation.id == null) return;
-                    context.read<CancelReservationBloc>().add(
-                          CancelReservationEvent(
-                            IdEntity(reservation.id!),
-                          ),
-                        );
-                  },
-                  child: BodyTitle(
-                    text: tr.cancel,
-                    color: context.appColors.red,
-                    fontSize: AppFontSize.s13,
-                    fontWeight: AppFontWeight.bold,
-                  ),
-                );
-              },
-            ),
-        ],
+                ],
+              ),
+            if (_isCancelable)
+              BlocBuilder<CancelReservationBloc, ICancelReservationState>(
+                builder: (context, state) {
+                  final isLoading = state is CancelReservationLoading;
+                  return CustomElevatedButton(
+                    height: AppHeight.h40,
+                    borderRadius: AppRadius.r10,
+                    color: context.appColors.lightRed,
+                    borderSide: BorderSide(color: context.appColors.red),
+                    notEnable: isLoading || reservation.id == null,
+                    loading: isLoading,
+                    onPressed: () {
+                      if (isLoading || reservation.id == null) return;
+                      context.read<CancelReservationBloc>().add(
+                            CancelReservationEvent(
+                              IdEntity(reservation.id!),
+                            ),
+                          );
+                    },
+                    child: BodyTitle(
+                      text: tr.cancel,
+                      color: context.appColors.red,
+                      fontSize: AppFontSize.s13,
+                      fontWeight: AppFontWeight.bold,
+                    ),
+                  );
+                },
+              ),
+          ],
+        ),
       ),
     );
   }
